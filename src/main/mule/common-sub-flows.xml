@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<sub-flow name="common-sub-flowsSub_Flow" doc:id="7404019f-4fff-4dcd-ac35-63916dd648fb" >
+		<ee:transform doc:name="set-common-vars" doc:id="1eea3c02-11b2-4c36-9e3e-ab6a2e35d5a0">
+			<ee:message>
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="metadata" ><![CDATA[%dw 2.0
+output application/java
+---
+{
+	'x-correlation-id':attributes.headers.'x-correlation-id',
+	'source':attributes.headers.source,
+	'target':attributes.headers.target
+}]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+	</sub-flow>
+</mule>
